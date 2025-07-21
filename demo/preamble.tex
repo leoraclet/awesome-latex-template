@@ -1,0 +1,535 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                          %
+% Author:       Léo RACLET                                 %
+% File:         preamble.tex                               %
+% Description:  LaTeX configuration file                   %
+% License:      MIT                                        %
+% Version:      v1.0                                       %
+%                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ======================================================== %
+% PACKAGES                                                 %
+% ======================================================== %
+
+\usepackage[utf8]{inputenc}              % Text encoding
+\usepackage[T1]{fontenc}                 % Font encoding
+\usepackage[french]{babel}               % French
+\usepackage[framemethod=TikZ]{mdframed}  % Frames
+\usepackage[ruled, vlined]{algorithm2e}  % Algorithms
+\usepackage[Rejne]{fncychap}             % Fancy chapter
+
+\usepackage{geometry}                    % Document layout
+\usepackage{listings}                    % Code listing
+\usepackage{fancyhdr}                    % Fancy header and footer
+\usepackage{pgfornament}                 % Ornaments
+\usepackage{tikz}                        % Draws
+\usepackage{graphicx}                    % Figures
+\usepackage{xcolor}                      % More colors
+\usepackage{caption}                     % Captions
+\usepackage{subcaption}                  % Sub-captions
+\usepackage{hyperref}                    % Hyperlinks
+\usepackage{amsmath}                     % Beautiful maths
+\usepackage{amssymb}                     % Math symbols
+\usepackage{biblatex}                    % Bibliography
+\usepackage{pgfplots}                    % Plots
+\usepackage{float}                       % Floating objects
+\usepackage{mathtools}                   % Better math formatting
+\usepackage{csquotes}                    % Quotes
+\usepackage{enumitem}                    % Better lists
+\usepackage{booktabs}                    % Quality tables
+\usepackage{array}                       % Fixed tables columns width
+\usepackage{multirow}                    % Combines tables rows
+\usepackage{tabularx}                    % Fixed tables width
+\usepackage{nicematrix}                  % Better matrices
+\usepackage{etoc}                        % Mini tables of contents
+\usepackage{multicol}                    % Mulitple columns
+\usepackage{ragged2e}                    % Text alignment
+\usepackage{subfiles}                    % Include subfiles
+
+
+% Pgfplot package specific version
+\pgfplotsset{compat=1.7}
+
+% ======================================================== %
+% TIKZ LIBRARIES                                           %
+% ======================================================== %
+
+\usetikzlibrary{shadows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{angles}
+\usetikzlibrary{quotes}
+
+% Optionals
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calligraphy}
+\usetikzlibrary{pgfplots.dateplot}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.text}
+
+% ======================================================== %
+% LAYOUT                                                   %
+% ======================================================== %
+
+% Document layout
+\geometry{
+    paper=a4paper, 
+    margin=70pt
+}
+
+% ======================================================== %
+% TEXT & LINKS                                             %
+% ======================================================== %
+
+% Hyperlinks style
+\hypersetup{
+    colorlinks,
+    linkcolor=black
+}
+
+% ======================================================== %
+% SPACING & INDENTATION                                    %
+% ======================================================== %
+
+\frenchspacing               % Remove extra spaces (caused by "babel" package)
+\reversemarginpar            % Reset paragraph margin
+\setlength{\parindent}{0pt}  % No indent before paragraph by default
+
+% ======================================================== %
+% CHAPTERS & TITLES                                        %
+% ======================================================== %
+
+% Chapter title
+\newcommand{\parttitle}{}
+
+% Numbered chapters
+\newcommand{\chap}[2][0]{
+	\chapter{#2}
+	\renewcommand{\parttitle}{#2}
+}
+
+% Unnumbered chapters
+\newcommand{\unbchap}[2][0]{
+	\chapter*{#2}
+    \addcontentsline{toc}{chapter}{#2}
+    \renewcommand{\parttitle}{#2}
+}
+
+% ======================================================== %
+% COLORS                                                   %
+% ======================================================== %
+
+% Code listing colors
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% ======================================================== %
+% COUNTERS                                                 %
+% ======================================================== %
+
+\setcounter{secnumdepth}{6}  % Depth of numbered sections
+\setcounter{tocdepth}{4}     % Depth of table of contents
+
+% Sections numbering
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+% ======================================================== %
+% CAPTIONS                                                 %
+% ======================================================== %
+
+\DeclareCaptionLabelSeparator{custom}{ -- }           % Caption label separator
+\DeclareCaptionFormat{custom}{{\sc #1#2}{\small #3}}  % Caption format
+
+\captionsetup{
+    format=custom,
+    labelsep=custom
+}
+
+% ======================================================== %
+% HEADER & FOOTER                                          %
+% ======================================================== %
+
+% Header height :
+% (15pt needed because of the "fancyhdr" package)
+
+\setlength{\headheight}{15pt}
+
+\pagestyle{fancy}
+\fancyhead[R]{Léo Raclet}                  % Left: Current chapter number
+\fancyhead[L]{Chapitre \arabic{chapter}}   % Right: Current chapter title
+\fancyhead[C]{\sc \parttitle}              % Center: Author
+
+% ======================================================== %
+% CODE LISTING                                             %
+% ======================================================== %
+
+% Define comments
+\SetKwComment{Comment}{/* }{ */}
+
+% Code listing style
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour!30},
+    commentstyle=\color{codepurple},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize\bfseries,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=t,
+    keepspaces=true,
+    numbers=left,
+    numbersep=12pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% Configure code listing
+\lstset{
+    style=mystyle,
+    framexleftmargin=24pt,
+    frame=shadowbox,
+    rulesepcolor=\color{black},
+    linewidth=\linewidth,
+    xleftmargin=24pt,
+    aboveskip=12pt,
+    belowskip=12pt
+}
+
+% ======================================================== %
+% MDFRAME ENVIRONMENTS                                     %
+% ======================================================== %
+
+% -------------------------------------------------------- %
+% Environments for theorems
+% -------------------------------------------------------- %
+
+\newenvironment{theorem}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east,rectangle,rounded corners=2pt,fill=blue!20, draw=blue!50]
+            {Théorème: \sc #1};
+        },
+        roundcorner=5pt,
+        shadow=true,
+        innertopmargin=10pt,
+        linecolor=blue!20,
+        linewidth=1pt,
+        topline=true,
+        backgroundcolor=blue!2,
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for proofs
+% -------------------------------------------------------- %
+
+\newenvironment{proof}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east,rectangle,rounded corners=2pt,fill=red!20, draw=red!50]
+            {Preuve: \sc #1};
+        },
+        roundcorner=5pt,
+        shadow=true,
+        innertopmargin=10pt,
+        linecolor=red!20,
+        linewidth=1pt,
+        topline=true,
+        backgroundcolor=red!2,
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for lemmas
+% -------------------------------------------------------- %
+
+\newenvironment{lemma}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east,rectangle,rounded corners=2pt,fill=green!20, draw=green!50]
+            {Lemme: \sc #1};
+        },
+        roundcorner=5pt,
+        shadow=true,
+        innertopmargin=10pt,
+        linecolor=green!40,
+        linewidth=1pt,
+        topline=true,
+        backgroundcolor=green!2,
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for definitions
+% -------------------------------------------------------- %
+
+\newenvironment{definition}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east]
+            {\textcolor{black}{Définition :}};
+        },
+        shadowcolor=black,
+        shadow=true,
+        innertopmargin=0pt,
+        linecolor=black!60,
+        linewidth=1pt,
+        topline=true,
+        backgroundcolor=black!2,
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for examples
+% -------------------------------------------------------- %
+
+\newenvironment{example}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east]
+            {\textcolor{red!20!orange}{\sc Exemple :}};
+        },
+        innertopmargin=0pt,
+        linecolor=red!20!orange,
+        linewidth=1pt,
+        topline=false,
+        bottomline=false,
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for remarks
+% -------------------------------------------------------- %
+
+\newenvironment{remark}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east]
+            {\textcolor{violet}{\sc Remarque :}};
+        },
+        innertopmargin=0pt,
+        linecolor=violet,
+        linewidth=1pt,
+        topline=false,
+        bottomline=false,
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for properties
+% -------------------------------------------------------- %
+
+\newenvironment{property}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east]
+            {\textcolor{red}{Propriété :}};
+        },
+        innertopmargin=0pt,
+        linecolor=red,
+        linewidth=1pt,
+        topline=false,
+        bottomline=false,
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for important notes
+% -------------------------------------------------------- %
+
+\newenvironment{important}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east,rectangle,fill=red!20, draw=red!50]
+            {\textcolor{black}{Important !}};
+        },
+        shadowcolor=red,
+        shadow=true,
+        innertopmargin=10pt,
+        linecolor=red!60,
+        linewidth=1pt,
+        topline=true,
+        backgroundcolor=red!2,
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for exercises
+% -------------------------------------------------------- %
+
+\newenvironment{exercise}[2][]
+{
+    \mdfsetup{
+        frametitle={
+            \tikz[]
+            \node[anchor=east]
+            {\textcolor{black!80}{Exercice #1: }};
+        },
+        innertopmargin=0pt,
+        linecolor=black,
+        innerlinewidth=0.4pt,
+        outerlinewidth=0.4pt,
+        middlelinecolor=black!5,
+        linewidth=2pt,
+        topline=false,
+        rightline=false,
+        bottomline=false,
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for contours
+% -------------------------------------------------------- %
+
+\newenvironment{contour}[2][]
+{
+    \mdfsetup{
+        shadowsize=4pt,
+        shadowcolor=black,
+        shadow=true,
+        innertopmargin=10pt,
+        linecolor=black!60,
+        linewidth=1pt,
+        topline=true,
+        backgroundcolor=black!1,
+    }
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% -------------------------------------------------------- %
+% Environments for syntheses
+% -------------------------------------------------------- %
+
+\newenvironment{synthese}[2][]
+{
+    \mdfsetup{
+        frametitle={#1},
+        frametitlealignment=\centering,
+        innertopmargin=10pt,
+        linewidth=0.5pt,
+        frametitlerule=true,
+        frametitlerulewidth=0.5pt,
+        frametitlebackgroundcolor=yellow!3,
+        frametitleaboveskip=10pt,
+        frametitlebelowskip=10pt,
+        backgroundcolor=black!1,
+        roundcorner=10pt,
+}
+    \begin{mdframed}
+        \relax
+        \label{#2}
+}
+{
+    \end{mdframed}
+}
+
+% ======================================================== %
+% FIGURES, DRAWS & PLOTS                                   %
+% ======================================================== %
+
+% Tikz drawing
+\newenvironment{draw}[2][]
+{
+    \begin{figure}[ht]
+        \centering
+        \caption{#2}
+        \begin{tikzpicture}[#1]
+}
+{
+        \end{tikzpicture}
+    \end{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
