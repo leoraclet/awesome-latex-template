@@ -1,5 +1,5 @@
 <div align="center"><img style="width: 200px; scale: 100%" src="./assets/latex.png"></div>
-<h1 align="center">📜 Handsome LaTeX 📜</h1>
+<h1 align="center">📜 Awesome LaTeX Template 📜</h1>
 
 <p align="center">
   LaTeX template for your outstanding documents
@@ -7,9 +7,9 @@
 
 <div align="center">
 
-![license](https://img.shields.io/github/license/leoraclet/handsome-latex)
-![language](https://img.shields.io/github/languages/top/leoraclet/handsome-latex)
-![lastcommit](https://img.shields.io/github/last-commit/leoraclet/handsome-latex)
+![license](https://img.shields.io/github/license/leoraclet/awesome-latex-template)
+![language](https://img.shields.io/github/languages/top/leoraclet/awesome-latex-template)
+![lastcommit](https://img.shields.io/github/last-commit/leoraclet/awesome-latex-template)
 <br>
 ![Version](https://img.shields.io/badge/Version-v1.0-blueviolet)
 ![Language](https://img.shields.io/badge/Language-LaTeX-1d50de)
@@ -19,6 +19,7 @@
 </div>
 
 ## Table of Contents
+
 - [Table of Contents](#table-of-contents)
 - [📖 About](#-about)
 - [🌟 Showcase](#-showcase)
@@ -32,10 +33,9 @@
 
 ## 📖 About
 
-**Handsome LaTeX** is a custom [LaTeX](https://www.latex-project.org/) template that I developed and used throughout my academic years for writing **documents**, **reports**, and **assignments**.
+**Awesome LaTeX Template** is a custom [LaTeX](https://www.latex-project.org/) template that I developed and used throughout my academic years for writing **documents**, **reports** and **assignments**.
 
 The template includes a range of predefined components and formatting options designed to help you organize your content clearly and present it in a professional, visually appealing way. It’s suitable for both technical and non-technical documents.
-
 
 ## 🌟 Showcase
 
@@ -44,7 +44,6 @@ If you'd like to see the final result, you can view the complete PDF [**here**](
 > [!NOTE]
 > The included **PDF** is a basic demo designed to showcase the different components of the template in various use cases.
 
-
 |              1               |              2               |
 | :--------------------------: | :--------------------------: |
 | ![page1](./assets/page1.png) | ![page2](./assets/page2.png) |
@@ -52,7 +51,6 @@ If you'd like to see the final result, you can view the complete PDF [**here**](
 | ![page3](./assets/page3.png) | ![page4](./assets/page4.png) |
 |            **5**             |            **6**             |
 | ![page5](./assets/page5.png) | ![page6](./assets/page6.png) |
-
 
 ## 🚀 How to use
 
@@ -92,8 +90,8 @@ latexmk {YOUR_DOCUMENT}.tex -pdf
 Or, you can just clone this repo
 
 ```bash
-git clone https://github.io/leoraclet/handsome-latex
-cd handsome-latex
+git clone https://github.io/leoraclet/awesome-latex-template
+cd awesome-latex-template
 ```
 
 And then just use the [**`Makefile`**](./Makefile) like this
@@ -107,7 +105,6 @@ make
 > [!WARNING]
 >
 > I'm currently happy with the way the template is set up, so I don't plan to make any changes in the near future.
-
 
 This project is maintained by:
 
@@ -132,7 +129,6 @@ Your contributions help make this project better for everyone !
 - **LaTeX** – A powerful document preparation system widely used in academia, especially in mathematics and computer science fields.
 
 - **Internet Forums** – For the countless small examples, tips, and snippets shared by the community that helped shape this template.
-
 
 ## 📜 License
 
